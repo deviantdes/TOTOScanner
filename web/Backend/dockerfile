@@ -1,7 +1,6 @@
-FROM node:12-alpine
-WORKDIR /app
-COPY package.json /app
-RUN npm install
-COPY . /app
-CMD ["npm","run","start"]
+FROM zenika/alpine-chrome:with-node
+ENV PUPPETEER_EXECUTABLE_PATH="/usr/bin/chromium-browser"
 
+WORKDIR /app
+
+CMD ["npm", "run", "start"]

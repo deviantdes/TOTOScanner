@@ -12,17 +12,16 @@ const ports = process.env.PORT || 3000
 
 app.use(cors())
 app.use(bodyParser())
-
-app.use(koaBody({ multipart: true }));
+app.use(koaBody({ multipart: true }))
 app.use(defaultRoute.routes())
 app.use(defaultRoute.allowedMethods())
-app.use(ctx => {
-    if (ctx.response.status === 404) {
-        ctx.status = 404
-        ctx.body = `${ctx.request.url} page is not found`
-    }
+app.use((ctx) => {
+  if (ctx.response.status === 404) {
+    ctx.status = 404
+    ctx.body = `${ctx.request.url} page is not found`
+  }
 })
 
 app.listen(ports, () => {
-    console.log(`Listening on port ${ports}...`)
+  console.log(`Listening on port ${ports}...`)
 })
